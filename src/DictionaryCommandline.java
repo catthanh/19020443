@@ -74,8 +74,83 @@ public class DictionaryCommandline extends DictionaryManagement {
 
     }
 
-    
+    public static void dictionaryAdvanced() throws Exception {
+
+        boolean running = true;
+        boolean menu = true;
+        Phase appPhase = Phase.MENU;
+
+        while (running) {
+            switch (appPhase) {
+                case MENU: {
+                    System.out.println("Input 'i' to add word");
+                    System.out.println("Input 's' to show all words");
+                    System.out.println("Input 'l' to look up word");
+                    System.out.println("Input 'r' to read from file");
+                    System.out.println("Input 'x' to exit");
+                    Scanner sc = new Scanner(System.in, StandardCharsets.UTF_8);
+                    char c = sc.next().charAt(0);
+                    switch (c) {
+                        case 'i': {
+                            appPhase = Phase.ADD;
+                            break;
+                        }
+                        case 's': {
+                            appPhase = Phase.SHOW;
+                            break;
+                        }
+                        case 'l': {
+                            appPhase = Phase.LOOKUP;
+                            break;
+                        }
+                        case 'r': {
+                            appPhase = Phase.READ_FILE;
+                            break;
+                        }
+                        case 'x': {
+                            running = false;
+                            break;
+                        }
+
+                        default: {
+                            appPhase = Phase.MENU;
+                            break;
+                        }
+                    }
+
+                    break;
+                }
+                case ADD: {
+                    System.out.println("Add new words:");
+                    insertFromCommandline();
+                    appPhase = Phase.MENU;
+
+                    break;
+                }
+                case SHOW: {
+                    showAllWords();
+                    appPhase = Phase.MENU;
+                    break;
+                }
+                case LOOKUP: {
+                    dictionaryLookup();
+                    appPhase = Phase.MENU;
+                    break;
+                }
+                case READ_FILE: {
+                    insertFromFile();
+                    appPhase = Phase.MENU;
+                    break;
+                }
+            }
+            //clrscr();
+
+
+        }
+    }
+
+
     public static void main(String[] args) throws Exception {
-        dictionaryBasic();
+        dictionaryAdvanced();
     }
 }
