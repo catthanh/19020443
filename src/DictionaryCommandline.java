@@ -17,6 +17,9 @@ public class DictionaryCommandline extends DictionaryManagement {
         SHOW,
         LOOKUP,
         READ_FILE,
+        EDIT,
+        REMOVE,
+        SEARCH
     }
 
     public static void dictionaryBasic() {
@@ -88,6 +91,9 @@ public class DictionaryCommandline extends DictionaryManagement {
                     System.out.println("Input 'l' to look up word");
                     System.out.println("Input 'r' to read from file");
                     System.out.println("Input 'x' to exit");
+                    System.out.println("Input 'e' to edit words");
+                    System.out.println("Input 'd' to remove words");
+                    System.out.println("Input 'f' to search words");
                     Scanner sc = new Scanner(System.in, StandardCharsets.UTF_8);
                     char c = sc.next().charAt(0);
                     switch (c) {
@@ -109,6 +115,18 @@ public class DictionaryCommandline extends DictionaryManagement {
                         }
                         case 'x': {
                             running = false;
+                            break;
+                        }
+                        case 'd': {
+                            appPhase = Phase.REMOVE;
+                            break;
+                        }
+                        case 'e': {
+                            appPhase = Phase.EDIT;
+                            break;
+                        }
+                        case 'f': {
+                            appPhase = Phase.SEARCH;
                             break;
                         }
 
@@ -139,6 +157,21 @@ public class DictionaryCommandline extends DictionaryManagement {
                 }
                 case READ_FILE: {
                     insertFromFile();
+                    appPhase = Phase.MENU;
+                    break;
+                }
+                case EDIT: {
+                    editFromCommandLine();
+                    appPhase = Phase.MENU;
+                    break;
+                }
+                case REMOVE: {
+                    removeFromCommandLine();
+                    appPhase = Phase.MENU;
+                    break;
+                }
+                case SEARCH: {
+                    searchFromCommandLine();
                     appPhase = Phase.MENU;
                     break;
                 }
