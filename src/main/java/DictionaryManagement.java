@@ -32,6 +32,17 @@ public class DictionaryManagement extends Dictionary {
         Collections.sort(words);
     }
 
+    public static void insertFromFile(String filename) throws java.io.IOException {
+        File file = new File(filename);
+        Scanner sc = new Scanner(file, StandardCharsets.UTF_8);
+        while (sc.hasNextLine()) {
+            String eng = sc.next();
+            String vie = sc.nextLine();
+            addWord(eng, vie);
+        }
+        Collections.sort(words);
+    }
+
     public static void dictionaryLookup() {
         System.out.println("Nhap tu can tra:");
         Scanner sc = new Scanner(System.in, StandardCharsets.UTF_8);
@@ -47,6 +58,19 @@ public class DictionaryManagement extends Dictionary {
             System.out.println("Khong tim thay!");
         }
 
+    }
+
+    public static String dictionaryLookup(String EngWord) {
+        String wordExplain = "Không tìm thấy";
+        boolean found = false;
+        for (int i = 0; i < getDictSize(); i++) {
+            if (EngWord.equals(getWord(i).getWordTarget())) {
+                wordExplain = getWord(i).getWordExplain();
+                found = true;
+            }
+        }
+
+        return wordExplain;
     }
 
     public static void editFromCommandLine() {

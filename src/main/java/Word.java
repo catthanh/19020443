@@ -28,4 +28,9 @@ public class Word implements Comparable<Word> {
     public void setWordExplain(String wordExplain) {
         this.wordExplain = wordExplain;
     }
+
+    @Override
+    public String toString() {
+        return wordTarget;
+    }
 }

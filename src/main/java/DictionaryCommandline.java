@@ -149,7 +149,7 @@ public class DictionaryCommandline extends DictionaryManagement {
                     showAllWords();
                     appPhase = Phase.MENU;
                     break;
-                }
+                }   
                 case LOOKUP: {
                     dictionaryLookup();
                     appPhase = Phase.MENU;

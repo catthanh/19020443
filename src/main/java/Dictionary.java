@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Dictionary {
     protected static final ArrayList<Word> words = new ArrayList<>();
 
+
     public Dictionary() {
 
     }

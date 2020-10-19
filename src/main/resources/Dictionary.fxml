@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+      prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="UIController">
+    <children>
+        <MenuBar>
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Close"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Delete"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <HBox prefHeight="13.0" prefWidth="600.0">
+            <children>
+                <TextField fx:id="wordSearch"/>
+                <Button mnemonicParsing="false" onAction="#buttonClicked" text="Translate"/>
+                <Button mnemonicParsing="false" text="Listen" onAction="#listenButtonClicked" fx:id="listenButton"/>
+            </children>
+        </HBox>
+        <VBox prefHeight="376.0" prefWidth="600.0">
+            <children>
+                <HBox prefHeight="399.0" prefWidth="600.0">
+                    <children>
+                        <ListView fx:id="wordListView" prefHeight="298.0" prefWidth="297.0">
+                            <padding>
+                                <Insets top="10.0"/>
+                            </padding>
+                        </ListView>
+                        <TextFlow fx:id="textFlow" prefHeight="293.0" prefWidth="293.0"/>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</VBox>
