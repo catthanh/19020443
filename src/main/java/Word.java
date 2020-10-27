@@ -1,6 +1,8 @@
 public class Word implements Comparable<Word> {
     private String wordTarget;
+    private String pronunciation = "";
     private String wordExplain;
+
 
     public Word(String eng, String vie) {
         this.wordTarget = eng;

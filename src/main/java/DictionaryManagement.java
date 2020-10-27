@@ -1,7 +1,7 @@
 import java.io.File;
 import java.nio.charset.StandardCharsets;
-import java.util.Collections;
 import java.util.Scanner;
+import java.util.Set;
 
 public class DictionaryManagement extends Dictionary {
 
@@ -17,7 +17,6 @@ public class DictionaryManagement extends Dictionary {
             String vie = sc.nextLine();
             addWord(eng, vie);
         }
-        Collections.sort(words);
     }
 
 
@@ -29,7 +28,6 @@ public class DictionaryManagement extends Dictionary {
             String vie = sc.nextLine();
             addWord(eng, vie);
         }
-        Collections.sort(words);
     }
 
     public static void insertFromFile(String filename) throws java.io.IOException {
@@ -40,21 +38,15 @@ public class DictionaryManagement extends Dictionary {
             String vie = sc.nextLine();
             addWord(eng, vie);
         }
-        Collections.sort(words);
     }
 
     public static void dictionaryLookup() {
         System.out.println("Nhap tu can tra:");
         Scanner sc = new Scanner(System.in, StandardCharsets.UTF_8);
         String EngWord = sc.next();
-        boolean found = false;
-        for (int i = 0; i < getDictSize(); i++) {
-            if (EngWord.equals(getWord(i).getWordTarget())) {
-                showWord(i);
-                found = true;
-            }
-        }
-        if (!found) {
+        if (words.containsKey(EngWord)) {
+            System.out.println(showWord(EngWord));
+        } else {
             System.out.println("Khong tim thay!");
         }
 
@@ -62,38 +54,30 @@ public class DictionaryManagement extends Dictionary {
 
     public static String dictionaryLookup(String EngWord) {
         String wordExplain = "Không tìm thấy";
-        boolean found = false;
-        for (int i = 0; i < getDictSize(); i++) {
-            if (EngWord.equals(getWord(i).getWordTarget())) {
-                wordExplain = getWord(i).getWordExplain();
-                found = true;
-            }
+        if (words.containsKey(EngWord)) {
+            wordExplain = words.get(EngWord).getWordExplain();
         }
 
+
         return wordExplain;
+    }
+
+    public static boolean dictionaryCheckIfExist(String EngWord) {
+        return words.containsKey(EngWord);
     }
 
     public static void editFromCommandLine() {
         System.out.println("Nhap tu can sua:");
         Scanner sc = new Scanner(System.in, StandardCharsets.UTF_8);
         String EngWord = sc.next();
-        boolean found = false;
-        int index = 0;
-        for (int i = 0; i < getDictSize(); i++) {
-            if (EngWord.equals(getWord(i).getWordTarget())) {
-                found = true;
-                index = i;
-                break;
-
-            }
-        }
+        boolean found = dictionaryCheckIfExist(EngWord);
         if (!found) {
             System.out.println("Khong tim thay tu can sua!");
         }
         if (found) {
             System.out.println("Nhap nghia moi cua tu can sua:");
             sc.nextLine();
-            getWord(index).setWordExplain(sc.nextLine());
+            getWord(EngWord).setWordExplain(sc.nextLine());
         }
 
     }
@@ -102,20 +86,12 @@ public class DictionaryManagement extends Dictionary {
         System.out.println("Nhap tu can xoa:");
         Scanner sc = new Scanner(System.in, StandardCharsets.UTF_8);
         String EngWord = sc.next();
-        boolean found = false;
-        int index = 0;
-        for (int i = 0; i < getDictSize(); i++) {
-            if (EngWord.equals(getWord(i).getWordTarget())) {
-                found = true;
-                index = i;
-                break;
+        boolean found = dictionaryCheckIfExist(EngWord);
 
-            }
-        }
         if (!found) {
             System.out.println("Khong tim thay tu can xoa!");
         } else {
-            words.remove(index);
+            words.remove(EngWord);
         }
 
     }
@@ -124,16 +100,11 @@ public class DictionaryManagement extends Dictionary {
         System.out.println("Nhap tu can tra:");
         Scanner sc = new Scanner(System.in, StandardCharsets.UTF_8);
         String EngWord = sc.next();
-        boolean found = false;
-        for (int i = 0; i < getDictSize(); i++) {
-            if (getWord(i).getWordTarget().startsWith(EngWord)) {
-                showWord(i);
-                found = true;
-
-            }
-        }
-        if (!found) {
-            System.out.println("Khong tim thay tu can tra!");
+        Set<String> keySet = words.keySet();
+        for (String key : keySet) {
+            if (key.startsWith(EngWord))
+                System.out.println(showWord(key));
         }
     }
+
 }

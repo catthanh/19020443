@@ -1,7 +1,7 @@
-import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class Dictionary {
-    protected static final ArrayList<Word> words = new ArrayList<>();
+    protected static final TreeMap<String, Word> words = new TreeMap<>();
 
 
     public Dictionary() {
@@ -14,16 +14,16 @@ public class Dictionary {
 
     public static void addWord(String eng, String vie) {
         Word word = new Word(eng, vie);
-        words.add(word);
+        words.put(eng, word);
 
     }
 
-    public static Word getWord(int i) {
+    public static Word getWord(String i) {
         return words.get(i);
     }
 
-    public static void showWord(int i) {
-        System.out.println(i + 1 + "\t| " + words.get(i).getWordTarget() + "\t| " + words.get(i).getWordExplain());
+    public static String showWord(String i) {
+        return (i + 1 + "\t| " + words.get(i).getWordTarget() + "\t| " + words.get(i).getWordExplain());
     }
 
 }

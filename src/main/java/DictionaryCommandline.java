@@ -1,12 +1,14 @@
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
+import java.util.Set;
 
 public class DictionaryCommandline extends DictionaryManagement {
     public static void showAllWords() {
         System.out.println("No\t| English\t| Vietnamese");
 
-        for (int i = 0; i < getDictSize(); i++) {
-            showWord(i);
+        Set<String> keySet = words.keySet();
+        for (String key : keySet) {
+            System.out.println(showWord(key));
         }
 
     }
@@ -149,7 +151,7 @@ public class DictionaryCommandline extends DictionaryManagement {
                     showAllWords();
                     appPhase = Phase.MENU;
                     break;
-                }   
+                }
                 case LOOKUP: {
                     dictionaryLookup();
                     appPhase = Phase.MENU;
@@ -176,7 +178,6 @@ public class DictionaryCommandline extends DictionaryManagement {
                     break;
                 }
             }
-            //clrscr();
 
 
         }

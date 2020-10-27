@@ -21,12 +21,12 @@ public class DictionaryApplication extends Application {
     }
 
 
-    public static void runApplication() {
-        main(new String[]{});
+    public static void runApplication(String[] args) {
+        Application.launch(args);
     }
 
 
     public static void main(String[] args) {
-        Application.launch(args);
+        runApplication(args);
     }
 }
