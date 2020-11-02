@@ -25,17 +25,18 @@ public class UIController {
     @FXML
     private TextFlow textFlow;
     @FXML
-    private ListView<Word> wordListView;
+    private ListView<String> wordListView;
 
 
     public void initialize() throws IOException {
         DictionaryManagement.insertFromFile();
-        ObservableList<Word> wordObservableList = FXCollections.observableArrayList(Dictionary.words);
+        ObservableList<String> wordObservableList = FXCollections.observableArrayList(Dictionary.words.keySet());
         wordListView.setItems(wordObservableList);
         wordListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             // Your action here
             selected = newValue.toString();
             showDefinition(selected);
+            wordSearch.setText(selected);
         });
     }
 
@@ -46,7 +47,7 @@ public class UIController {
 
     @FXML
     private void showDefinition(String text) {
-        selected = text;
+        selected = text.toLowerCase();
         textFlow.getChildren().clear();
         String s = DictionaryManagement.dictionaryLookup(text);
         Text t = new Text(s);

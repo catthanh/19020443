@@ -5,7 +5,6 @@ import java.util.Set;
 
 public class DictionaryManagement extends Dictionary {
 
-
     public static void insertFromCommandline() {
         Scanner sc = new Scanner(System.in, StandardCharsets.UTF_8);
         System.out.println("Enter number of words:");
@@ -21,11 +20,12 @@ public class DictionaryManagement extends Dictionary {
 
 
     public static void insertFromFile() throws java.io.IOException {
-        File file = new File("dictionaries.txt");
+        File file = new File("500word.txt");
         Scanner sc = new Scanner(file, StandardCharsets.UTF_8);
+        sc.useDelimiter(",");
         while (sc.hasNextLine()) {
             String eng = sc.next();
-            String vie = sc.nextLine();
+            String vie = sc.nextLine().substring(1);
             addWord(eng, vie);
         }
     }
@@ -105,6 +105,10 @@ public class DictionaryManagement extends Dictionary {
             if (key.startsWith(EngWord))
                 System.out.println(showWord(key));
         }
+    }
+
+    public static void getResource(String path) {
+
     }
 
 }

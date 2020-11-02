@@ -1,11 +1,12 @@
+import java.util.Map;
 import java.util.TreeMap;
 
 public class Dictionary {
-    protected static final TreeMap<String, Word> words = new TreeMap<>();
+    protected static final Map<String, Word> words = new TreeMap<String, Word>();
 
 
     public Dictionary() {
-
+        
     }
 
     public static int getDictSize() {
